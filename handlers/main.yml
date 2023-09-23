@@ -1,0 +1,5 @@
+---
+# handlers file for osman.init-inst
+
+- name: reboot system
+  ansible.builtin.reboot:

@@ -1,0 +1,16 @@
+---
+- name: STEP (5) --- install main packages
+  block:
+  - name: STEP (5.1) --- RedHat nodes
+    loop: "{{ main_packages }}"
+    ansible.builtin.dnf:
+      name: "{{ item }}"
+      state: latest
+
+  rescue: 
+  - name: STEP (5.2) --- Linux NON RedHat
+    when: ansible_facts['distribution'] != "RedHat"
+    loop: "{{ main_packages }}"
+    ansible.builtin.yum:
+      name: "{{ item }}"
+      state: latest

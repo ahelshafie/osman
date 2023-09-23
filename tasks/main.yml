@@ -1,0 +1,24 @@
+---
+# tasks file for osman.init-inst
+
+- name: STEP (2) --- create {{ puser }} group
+  ansible.builtin.group:
+    name: "{{ pgroup }}"
+    gid: "{{ pgid }}"
+
+- name: STEP (3) --- create user {{ puser }}
+  ansible.builtin.user:
+    name: "{{ puser }}"
+    group: "{{ pgroup }}"
+    uid: "{{ puid }}"
+    password: "{{ pu_pass | password_hash('sha512') }}"
+
+- name: STEP (4) --- make {{ puser }} an admin
+  ansible.builtin.copy:
+    src: devops
+    dest: /etc/sudoers.d/
+    mode: 0644
+    owner: root
+
+- name: adding additional tasks
+  ansible.builtin.include_tasks: part2.yml

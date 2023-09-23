@@ -1,0 +1,14 @@
+---
+# defaults file for osman.init-inst
+main_packages:
+  - bash-completion
+  - net-tools
+  - vim-enhanced
+  - "*"
+
+sudoers_file: devops
+
+puser: devops
+pgroup: devops
+puid: 1995
+pgid: 1995

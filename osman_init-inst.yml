@@ -1,0 +1,22 @@
+---
+- name: This Play for init installation
+  hosts: "{{ myhost | default('localhost') }}"
+  become: true
+  remote_user: root
+  gather_facts: true
+
+  pre_tasks:
+    - name: STEP (1) --- starting initial installations ...
+      ansible.builtin.debug:
+        msg: "Creating Server admin {{ puser }} and starting initial installation"
+
+  roles:
+    - osman.init-inst
+
+  post_tasks:
+    - name: STEP (6) --- The End
+      ansible.builtin.debug:
+        msg: "Tasks have been completed successfully !"
+
+    - name: reboot system
+      ansible.builtin.reboot:
