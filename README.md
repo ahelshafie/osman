@@ -35,5 +35,4 @@ BSD
 
 Author Information
 ------------------
-This role created by: Ahmed Osman
-ahelshafi3
+Ahmed Osman
